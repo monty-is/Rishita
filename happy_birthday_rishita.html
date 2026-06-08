@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Happy Birthday Rishita 🎂</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      background:#0a0015;
+      font-family:'Signika',sans-serif;
+      overflow-x:hidden;
+      min-height:100vh;
+    }
+
+    /* ── Stars background ── */
+    #stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+    .star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 2s infinite alternate;}
+    @keyframes twinkle{0%{opacity:.2;}100%{opacity:1;}}
+
+    /* ── Loading ── */
+    #loading{
+      position:fixed;inset:0;background:#0a0015;z-index:999;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      transition:opacity .8s;
+    }
+    #loading h1{color:#ff85c2;font-family:'Dancing Script',cursive;font-size:3rem;animation:pulse 1s infinite alternate;}
+    @keyframes pulse{from{transform:scale(1);}to{transform:scale(1.08);}}
+    .spinner{width:60px;height:60px;border:4px solid #ff85c240;border-top-color:#ff85c2;border-radius:50%;animation:spin .8s linear infinite;margin-top:1.5rem;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+
+    /* ── Balloons ── */
+    .balloon{
+      position:fixed;top:110%;width:70px;height:90px;
+      border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+      display:flex;align-items:center;justify-content:center;
+      font-size:2rem;font-weight:700;
+      animation:float-up 6s ease-in infinite;
+      z-index:1;opacity:0;
+    }
+    .balloon::after{content:'';display:block;width:2px;height:60px;background:rgba(255,255,255,.4);position:absolute;bottom:-60px;left:50%;}
+    @keyframes float-up{0%{top:110%;opacity:0;}10%{opacity:1;}90%{opacity:1;}100%{top:-20%;opacity:0;}}
+    #b1{left:5%;background:#FFD700;animation-delay:0s;animation-duration:7s;}
+    #b2{left:15%;background:#FF6B9D;animation-delay:1s;animation-duration:6s;}
+    #b3{left:28%;background:#A855F7;animation-delay:2s;animation-duration:8s;}
+    #b4{left:42%;background:#06B6D4;animation-delay:.5s;animation-duration:6.5s;}
+    #b5{left:58%;background:#F97316;animation-delay:1.5s;animation-duration:7.5s;}
+    #b6{left:72%;background:#22C55E;animation-delay:2.5s;animation-duration:6s;}
+    #b7{left:85%;background:#EF4444;animation-delay:3s;animation-duration:7s;}
+
+    /* ── Main wrapper ── */
+    .main{position:relative;z-index:2;max-width:800px;margin:0 auto;padding:20px;}
+
+    /* ── Lights row ── */
+    .lights{display:flex;justify-content:center;gap:18px;padding:30px 0 10px;flex-wrap:wrap;}
+    .bulb{
+      width:22px;height:30px;border-radius:50% 50% 45% 45%;
+      box-shadow:0 0 14px 6px var(--glow);
+      animation:blink 1.2s infinite alternate;
+    }
+    @keyframes blink{from{opacity:1;}to{opacity:.3;}}
+    .bulb.y{background:#FFD700;--glow:#FFD70099;animation-delay:0s;}
+    .bulb.r{background:#EF4444;--glow:#EF444499;animation-delay:.2s;}
+    .bulb.b{background:#3B82F6;--glow:#3B82F699;animation-delay:.4s;}
+    .bulb.g{background:#22C55E;--glow:#22C55E99;animation-delay:.6s;}
+    .bulb.p{background:#A855F7;--glow:#A855F799;animation-delay:.8s;}
+    .bulb.o{background:#F97316;--glow:#F9731699;animation-delay:1s;}
+
+    /* ── Banner ── */
+    .banner-text{
+      font-family:'Dancing Script',cursive;
+      font-size:clamp(2rem,8vw,4.5rem);
+      color:#FF85C2;
+      text-shadow:0 0 20px #ff85c2,0 0 40px #ff85c2aa;
+      text-align:center;
+      margin:20px 0;
+      animation:glow-pulse 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow-pulse{from{text-shadow:0 0 20px #ff85c2;}to{text-shadow:0 0 40px #ff85c2,0 0 80px #ff85c2aa;}}
+    .sub-banner{
+      font-size:1.2rem;color:#E9D5FF;text-align:center;letter-spacing:3px;
+      text-transform:uppercase;margin-bottom:30px;opacity:.8;
+    }
+
+    /* ── Photo frame ── */
+    .photo-section{
+      display:flex;justify-content:center;margin:30px 0;
+    }
+    .photo-frame{
+      width:220px;height:220px;border-radius:50%;
+      border:5px solid #FF85C2;
+      box-shadow:0 0 30px #ff85c2aa,0 0 60px #a855f755;
+      overflow:hidden;position:relative;
+      animation:frame-pulse 3s ease-in-out infinite alternate;
+    }
+    @keyframes frame-pulse{from{box-shadow:0 0 30px #ff85c2aa;}to{box-shadow:0 0 50px #ff85c2,0 0 90px #a855f755;}}
+    .photo-frame img{width:100%;height:100%;object-fit:cover;}
+    .photo-placeholder{
+      width:100%;height:100%;background:linear-gradient(135deg,#FF85C2,#A855F7);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      color:#fff;text-align:center;padding:20px;
+    }
+    .photo-placeholder span{font-size:3rem;}
+    .photo-placeholder p{font-size:.85rem;opacity:.8;margin-top:8px;line-height:1.4;}
+
+    /* ── Cake ── */
+    .cake-section{display:flex;justify-content:center;margin:30px 0;}
+    .cake-wrap{position:relative;width:200px;}
+
+    /* Candles */
+    .candles{display:flex;justify-content:space-around;margin-bottom:-2px;padding:0 30px;}
+    .candle{
+      width:12px;height:40px;border-radius:3px;
+      background:linear-gradient(to bottom,#FFD700,#F97316);
+      position:relative;
+    }
+    .flame{
+      width:10px;height:18px;
+      background:radial-gradient(ellipse at bottom,#FFD700,#FF6B00,transparent);
+      border-radius:50% 50% 30% 30%;
+      position:absolute;top:-16px;left:1px;
+      animation:flicker .4s ease-in-out infinite alternate;
+      transform-origin:bottom center;
+    }
+    @keyframes flicker{
+      from{transform:scaleX(1) scaleY(1) rotate(-3deg);}
+      to{transform:scaleX(.8) scaleY(1.15) rotate(3deg);}
+    }
+
+    /* Frosting */
+    .frosting{
+      height:30px;background:#FF85C2;border-radius:10px 10px 0 0;
+      position:relative;overflow:hidden;
+    }
+    .frosting::after{
+      content:'';position:absolute;bottom:0;left:0;right:0;
+      background:repeating-linear-gradient(90deg,#fff 0 16px,transparent 16px 32px);
+      height:10px;opacity:.3;
+    }
+    /* Drips */
+    .drip{
+      position:absolute;top:100%;background:#FF85C2;border-radius:0 0 50% 50%;
+      width:14px;animation:drip-grow 2s ease-in-out infinite alternate;
+    }
+    @keyframes drip-grow{from{height:8px;}to{height:18px;}}
+
+    /* Cake layers */
+    .layer1{height:50px;background:#F5CBA7;border:2px solid #E59866;position:relative;}
+    .layer1::after{content:'🍓 🍓 🍓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.9rem;letter-spacing:6px;}
+    .layer2{height:45px;background:#FAD7A0;border:2px solid #E59866;}
+    .cake-bottom{height:15px;background:#A04000;border-radius:0 0 8px 8px;}
+
+    /* Plate */
+    .plate{
+      height:14px;background:#D5D8DC;border-radius:50%;
+      box-shadow:0 4px 0 #B2BABB;margin-top:4px;
+    }
+
+    /* ── Message card ── */
+    .msg-card{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,133,194,.3);
+      border-radius:20px;
+      padding:30px 35px;
+      margin:30px 0;
+      backdrop-filter:blur(10px);
+    }
+    .msg-card p{
+      color:#E9D5FF;
+      font-size:1.05rem;
+      line-height:2;
+      text-align:center;
+    }
+    .msg-card p strong{color:#FF85C2;font-size:1.15rem;}
+    .msg-card .name-highlight{
+      font-family:'Dancing Script',cursive;
+      font-size:2rem;color:#FFD700;
+      display:block;margin:15px 0;
+      text-shadow:0 0 15px #FFD700;
+    }
+
+    /* ── Confetti ── */
+    .confetti-piece{
+      position:fixed;width:10px;height:10px;
+      animation:confetti-fall linear infinite;
+      z-index:1;border-radius:2px;
+      pointer-events:none;
+    }
+    @keyframes confetti-fall{
+      0%{top:-10px;transform:rotate(0deg);}
+      100%{top:110vh;transform:rotate(720deg);}
+    }
+
+    /* ── Footer ── */
+    .footer{text-align:center;color:#A78BFA;font-size:.85rem;padding:40px 20px 20px;opacity:.6;}
+
+    /* Responsive */
+    @media(max-width:500px){
+      .msg-card{padding:20px 18px;}
+      .photo-frame{width:170px;height:170px;}
+      .cake-wrap{width:160px;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loading -->
+<div id="loading">
+  <h1>🎂 Happy Birthday Rishita! 🎂</h1>
+  <div class="spinner"></div>
+</div>
+
+<!-- Stars -->
+<div id="stars"></div>
+
+<!-- Balloons -->
+<div class="balloon" id="b1" style="color:#0a0015;">H</div>
+<div class="balloon" id="b2" style="color:#fff;">B</div>
+<div class="balloon" id="b3" style="color:#fff;">D</div>
+<div class="balloon" id="b4" style="color:#0a0015;">R</div>
+<div class="balloon" id="b5" style="color:#fff;">I</div>
+<div class="balloon" id="b6" style="color:#fff;">S</div>
+<div class="balloon" id="b7" style="color:#fff;">✨</div>
+
+<!-- Main -->
+<div class="main">
+
+  <!-- Lights -->
+  <div class="lights">
+    <div class="bulb y"></div><div class="bulb r"></div><div class="bulb b"></div>
+    <div class="bulb g"></div><div class="bulb p"></div><div class="bulb o"></div>
+    <div class="bulb y"></div><div class="bulb r"></div><div class="bulb b"></div>
+    <div class="bulb g"></div><div class="bulb p"></div><div class="bulb o"></div>
+  </div>
+
+  <!-- Banner -->
+  <div class="banner-text">Happy Birthday</div>
+  <div class="banner-text" style="font-size:clamp(2.5rem,10vw,5.5rem);color:#FFD700;text-shadow:0 0 20px #FFD700,0 0 40px #FFD70088;">Rishita 🌸</div>
+  <div class="sub-banner">✨ Wishing You the Most Beautiful Day ✨</div>
+
+  <!-- Photo -->
+  <div class="photo-section">
+    <div class="photo-frame">
+      <!-- 
+        TO ADD RISHITA'S PHOTO:
+        Replace the div below with: <img src="YOUR_PHOTO_FILENAME.jpg" alt="Rishita">
+        Make sure the photo file is in the same folder as this HTML file.
+      -->
+      <div class="photo-placeholder">
+        <span>📸</span>
+        <p>Add Rishita's photo here<br><small>(replace placeholder with &lt;img&gt; tag)</small></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cake -->
+  <div class="cake-section">
+    <div class="cake-wrap">
+      <!-- Candles -->
+      <div class="candles">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+      </div>
+      <!-- Frosting -->
+      <div class="frosting" style="position:relative;">
+        <div class="drip" style="left:10%;"></div>
+        <div class="drip" style="left:30%;animation-delay:.3s;"></div>
+        <div class="drip" style="left:55%;animation-delay:.6s;"></div>
+        <div class="drip" style="left:78%;animation-delay:.9s;"></div>
+      </div>
+      <!-- Layers -->
+      <div class="layer1"></div>
+      <div class="layer2" style="display:flex;align-items:center;justify-content:center;color:#A04000;font-weight:600;font-size:.8rem;letter-spacing:1px;">🎂 RISHITA 🎂</div>
+      <div class="cake-bottom"></div>
+      <div class="plate"></div>
+    </div>
+  </div>
+
+  <!-- Message -->
+  <div class="msg-card">
+    <p>Today is a day as beautiful as you are,</p>
+    <p>but today is extra special — </p>
+    <p>it belongs entirely to <strong>you</strong>.</p>
+    <p>Another chapter, another year of</p>
+    <p>your wonderful story unfolding.</p>
+    <p>🌸</p>
+    <p>May every wish you've ever whispered</p>
+    <p>find its way to you this year.</p>
+    <p>May laughter fill your days</p>
+    <p>and love surround your nights.</p>
+    <p>✨</p>
+    <p>You deserve all the colours</p>
+    <p>the universe has to offer —</p>
+    <p>every sunrise painted just for you,</p>
+    <p>every star lit in your name.</p>
+    <p>💫</p>
+    <p>Keep shining, keep smiling,</p>
+    <p>keep being the magic that you are.</p>
+    <p>Here's to you, the most beautiful soul — </p>
+    <span class="name-highlight">Happy Birthday, Rishita! 🎉</span>
+    <p>May this year be your best one yet.</p>
+    <p>With all the love in the world 💖</p>
+  </div>
+
+  <div class="footer">Made with 💖 just for Rishita · Have the most wonderful day!</div>
+</div>
+
+<script>
+  // Remove loading after 2s
+  setTimeout(()=>{
+    const l=document.getElementById('loading');
+    l.style.opacity='0';
+    setTimeout(()=>l.remove(),800);
+  },2000);
+
+  // Generate stars
+  const starContainer=document.getElementById('stars');
+  for(let i=0;i<120;i++){
+    const s=document.createElement('div');
+    s.className='star';
+    const size=Math.random()*3+1;
+    s.style.cssText=`
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      width:${size}px;height:${size}px;
+      animation-delay:${Math.random()*3}s;
+      animation-duration:${Math.random()*2+1.5}s;
+      opacity:${Math.random()*.8+.2};
+    `;
+    starContainer.appendChild(s);
+  }
+
+  // Confetti
+  const colors=['#FF85C2','#FFD700','#A855F7','#06B6D4','#22C55E','#F97316','#EF4444'];
+  for(let i=0;i<30;i++){
+    const c=document.createElement('div');
+    c.className='confetti-piece';
+    c.style.cssText=`
+      left:${Math.random()*100}%;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${Math.random()*4+3}s;
+      animation-delay:${Math.random()*5}s;
+      width:${Math.random()*8+6}px;
+      height:${Math.random()*8+6}px;
+      opacity:${Math.random()*.6+.4};
+      border-radius:${Math.random()>0.5?'50%':'2px'};
+    `;
+    document.body.appendChild(c);
+  }
+</script>
+</body>
+</html>
